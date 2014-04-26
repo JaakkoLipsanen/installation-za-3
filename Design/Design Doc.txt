@@ -1,0 +1,2 @@
+- 2D side scroller avaruus FPS. Tyypit (tiedemiehiä?) menee marsiin/kuuhun/johonkin ja perustaa sinne pienen colonyn. Sit yhtäkkii MC (se on jossai asemalla tms) saa radiolähetyksen toiselta asemalta mis tyyppi kertoo et ollaan hyökätty tms ja sit se tyyppi kuolee
+  kesken sen radio-lähetyksen. Sit se lähtee sielt pois ja alkaa lahtaa tyyppejä-
