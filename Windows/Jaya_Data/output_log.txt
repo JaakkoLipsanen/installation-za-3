@@ -1,0 +1,29 @@
+Initialize engine version: 4.3.1f1 (cebd4d9b5122)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [nvd3dum.dll 9.18.13.3523]
+    Renderer: NVIDIA GeForce GTX 460
+    Vendor:   NVIDIA
+    VRAM:     971 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Koodaus\Unity\Jaya\Windows\Jaya_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Koodaus\Unity\Jaya\Windows\Jaya_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Koodaus\Unity\Jaya\Windows\Jaya_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Koodaus\Unity\Jaya\Windows\Jaya_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Koodaus\Unity\Jaya\Windows\Jaya_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Koodaus\Unity\Jaya\Windows\Jaya_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Koodaus\Unity\Jaya\Windows\Jaya_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading C:\Koodaus\Unity\Jaya\Windows\Jaya_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Koodaus\Unity\Jaya\Windows\Jaya_Data\Managed\Flai.Unity.dll (this message is harmless)
+Loading C:\Koodaus\Unity\Jaya\Windows\Jaya_Data\Managed\Flai.Unity.dll into Unity Child Domain
+- Completed reload, in  0.050 seconds
+desktop: 2560x1600 60Hz; virtual: 4480x1600 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Koodaus\Unity\Jaya\Windows\Jaya_Data\Managed\System.Core.dll (this message is harmless)
+The class defined in script file named '' does not match the file name!
+ 
+(Filename:  Line: 1615)
+
+Platform assembly: C:\Koodaus\Unity\Jaya\Windows\Jaya_Data\Managed\Boo.Lang.dll (this message is harmless)

@@ -115,7 +115,8 @@ namespace Assets.Scripts.Player
             // set facing direction
             if (force != 0)
             {
-                this.FacingDirection = (force > 0) ? HorizontalDirection.Right : HorizontalDirection.Left;
+                // todo: not setting, messes the PlayerLook
+               // this.FacingDirection = (force > 0) ? HorizontalDirection.Right : HorizontalDirection.Left;
             }
 
             // flip upside down if anti gravity
