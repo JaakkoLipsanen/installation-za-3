@@ -75,7 +75,10 @@ namespace Assets.Scripts.Player
                 _timeSinceNotInGround += Time.deltaTime;
             }
 
-            this.Control();
+            if (this.IsControllingEnabled)
+            {
+                this.Control();
+            }
         }
 
         private void Control()

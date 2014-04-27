@@ -1,7 +1,9 @@
 ﻿using Flai;
+using UnityEngine;
 
 namespace Assets.Scripts.General
 {
+    [ExecuteInEditMode]
 	public class JayaTilemap : FlaiScript
 	{
 	    protected override void Awake()
