@@ -57,7 +57,7 @@ namespace Assets.Scripts.Stars
             SpriteRenderer spriteRenderer = star.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = this.Sprite;
             spriteRenderer.color = color;
-            spriteRenderer.sortingOrder = -100;
+            spriteRenderer.sortingOrder = -10000;
 
             return star;
         }

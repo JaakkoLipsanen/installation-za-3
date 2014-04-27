@@ -22,7 +22,6 @@ namespace Assets.Scripts.Bullets
 	        {
 	            this.Explosion.Instantiate(this.Position2D, this.Rotation2D);
 	        }
-
          
             this.DestroyGameObject();
 	    }
