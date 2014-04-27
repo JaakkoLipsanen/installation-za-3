@@ -1,4 +1,5 @@
 ﻿using Flai;
+using Flai.Diagnostics;
 using Flai.Input;
 using UnityEngine;
 
@@ -23,16 +24,17 @@ namespace Assets.Scripts.Player
         {
             get
             {
+                LayerMaskF IgnoreMask = LayerMaskF.FromNames("Player").Inverse;
                 BoxCollider2D collider = (BoxCollider2D)this.collider2D;
-                Vector2f center = this.Position2D + this.GroundDirection.ToUnitVector() * (collider.size.y / 2f + 0.01f);
+                Vector2f center = collider.GetBoundsHack().Center + this.GroundDirection.ToUnitVector() * (collider.size.y / 2f + 0.01f);
                 Vector2f left = center - Vector2f.UnitX * collider.size / 2f;
                 Vector2f right = center + Vector2f.UnitX * collider.size / 2f;
 
-                const float MaxDistance = 0.01f;
+                const float MaxDistance = 0.15f;
                 Vector2f direction = this.GroundDirection.ToUnitVector();
-                return Physics2D.Raycast(center, direction, MaxDistance) ||
-                    Physics2D.Raycast(left, direction, MaxDistance) ||
-                    Physics2D.Raycast(right, direction, MaxDistance);
+                return Physics2D.Raycast(center, direction, MaxDistance, IgnoreMask) ||
+                    Physics2D.Raycast(left, direction, MaxDistance, IgnoreMask) ||
+                    Physics2D.Raycast(right, direction, MaxDistance, IgnoreMask);
             }
         }
 

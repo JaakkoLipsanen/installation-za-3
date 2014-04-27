@@ -1,14 +1,16 @@
-﻿using Assets.Misc;
+﻿using System.Collections.Generic;
+using Assets.Misc;
 using Flai;
 using Flai.General;
 using Flai.Input;
 using Flai.Scripts;
 using UnityEngine;
 
-namespace Assets.Scripts.Computer
+namespace Assets.Scripts.General
 {
 	public class Computer : FlaiScript
 	{
+	    private GameObject _playerInside;
 	    private bool _hasExecuted = false;
 	    private GameObject _currentText;
 
@@ -17,6 +19,7 @@ namespace Assets.Scripts.Computer
 	    public GameObject TextPrefab;
 	    public Response Response;
 
+	    public bool ExecuteOff = false;
 	    public bool CanExecuteMultipleTimes = false;
 	    public bool IsPlayerInArea
 	    {
@@ -40,6 +43,7 @@ namespace Assets.Scripts.Computer
                 return;
 	        }
 
+	        _playerInside = other.gameObject;
 	        _currentText = this.TextPrefab.Instantiate(this.Position2D + Vector2f.UnitY);
 	        _currentText.Get<TextMesh>().text = string.Format(this.InputStringFormat, EnumHelper.GetName(this.InputKey));
 	    }
@@ -51,15 +55,22 @@ namespace Assets.Scripts.Computer
                 return;
             }
 
-            _currentText.DestroyIfNotNull();
-	        _currentText = null;
+            this.OnExit();
 	    }
 
 	    protected override void Update()
 	    {
 	        if (this.IsPlayerInArea && FlaiInput.IsNewKeyPress(this.InputKey) && this.CanExecute)
 	        {
-	            this.Response.Execute();
+	            if (this.ExecuteOff)
+	            {
+	                this.Response.ExecuteOff();
+	            }
+	            else
+                {
+                    this.Response.Execute(); 
+	            }
+
 	            _hasExecuted = true;
 
 	            if (!this.CanExecuteMultipleTimes)
@@ -68,6 +79,18 @@ namespace Assets.Scripts.Computer
 	                _currentText = null;
 	            }
 	        }
+
+	        if (_playerInside != null && !PhysicsHelper.Intersects(_playerInside.collider2D, this.collider2D))
+	        {
+	            this.OnExit();
+	        }
+	    }
+
+	    private void OnExit()
+	    {
+            _playerInside = null;
+            _currentText.DestroyIfNotNull();
+            _currentText = null;
 	    }
 	}
 }

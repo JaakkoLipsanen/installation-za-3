@@ -1,4 +1,5 @@
 ﻿using Flai;
+using Flai.Diagnostics;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
