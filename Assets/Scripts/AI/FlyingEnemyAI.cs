@@ -14,7 +14,7 @@ namespace Assets.Scripts.AI
         private Vector2f _velocity = Vector2f.Zero;
 
         private Timer _shootTimer = new Timer(1.5f);
-        private Timer _generateNewTargetPositionTimer;
+        private Timer _generateNewTargetPositionTimer = new Timer(5);
         private Vector2f _targetPosition;
 
         protected override void Awake()
@@ -33,7 +33,7 @@ namespace Assets.Scripts.AI
 
         private void Control()
         {
-            const float MaxSpeed = 5f;
+            const float MaxSpeed = 3f;
 
             Vector2f direction = Vector2f.NormalizeOrZero(_targetPosition - this.Position2D);
             _velocity += direction * Time.deltaTime * 4;
@@ -55,7 +55,8 @@ namespace Assets.Scripts.AI
 
         private void Shoot()
         {
-            float rotation = FlaiMath.GetAngleDeg(_player.GetPosition2D() - this.Position2D);
+            var target = _player.GetPosition2D() + _player.rigidbody2D.velocity.ToVector2f() * 0.1f;
+            float rotation = FlaiMath.GetAngleDeg(target - this.Position2D);
             var bullet = this.BulletPrefab.Instantiate(this.Position2D, rotation);
             bullet.SetLayer("EnemyBullets");
         }

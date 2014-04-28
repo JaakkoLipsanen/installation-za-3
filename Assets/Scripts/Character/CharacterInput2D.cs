@@ -41,11 +41,7 @@ namespace Assets.Scripts.Character
 
                 if (FlaiInput.IsButtonOrKeyPressed(this.JumpButton, this.JumpAlternativeKey))
                 {
-                    if (_characterController2D.Jump())
-                    {
-
-                        FlaiDebug.Log("Jump!!");
-                    }
+                    _characterController2D.Jump();
                 }
             }
         }
