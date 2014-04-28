@@ -1,15 +1,16 @@
-﻿using Flai;
+﻿using Assets.Scripts.Character;
+using Flai;
 using Flai.Diagnostics;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
-    [RequireComponent(typeof(PlayerController))]
+    [RequireComponent(typeof(CharacterController2D))]
 	public class PlayerAnimationState : FlaiScript
 	{
-	    private PlayerController Controller
+        private CharacterController2D Controller
 	    {
-	        get { return this.Get<PlayerController>(); }
+            get { return this.Get<CharacterController2D>(); }
 	    }
 
         protected override void Awake()

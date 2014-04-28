@@ -15,7 +15,6 @@ namespace Assets.Scripts.General
 
         public override void ExecuteOff()
         {
-            FlaiDebug.Log("Off");
             _isOn = false;
         }
 

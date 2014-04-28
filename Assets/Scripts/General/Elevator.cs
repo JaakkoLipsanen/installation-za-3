@@ -31,7 +31,6 @@ namespace Assets.Scripts.General
             float targetSpeed = 0f;
             if (_onTopMover.HasAny && _progress < this.Distance)
             {
-                FlaiDebug.Log("h");
                 _timeSinceOnTop.Restart();
                 targetSpeed = this.Speed;
             }
@@ -44,7 +43,6 @@ namespace Assets.Scripts.General
                 }
             }
 
-            FlaiDebug.Log("TS: " + targetSpeed);
             _currentSpeed += Time.deltaTime * 4 * FlaiMath.Sign(targetSpeed - _currentSpeed);
             _currentSpeed = FlaiMath.Clamp(_currentSpeed, -this.Speed, this.Speed);
             _progress = FlaiMath.Clamp(_progress + _currentSpeed * Time.deltaTime, 0, this.Distance);
