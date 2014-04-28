@@ -27,7 +27,7 @@ namespace Assets.Scripts.Guns
 	        float rotation = this.Rotation2D < 90 || this.Rotation2D > 270 ? this.Rotation2D : (270 - this.Rotation2D + 90);
 
             var bullet = this.BulletPrefab.Instantiate(this.Position2D, rotation);
-            bullet.SetLayer("Bullets");
+            bullet.SetLayer("PlayerBullets");
 	    }
 	}
 }
