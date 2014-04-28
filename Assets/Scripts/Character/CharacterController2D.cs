@@ -12,7 +12,7 @@ namespace Assets.Scripts.Character
 
         private int _moveDirection = 0;
         private bool _jumpNextFrame = false;
-        private bool _didJumpThisFrame = false;
+      //  private bool _didJumpThisFrame = false;
 
         public float HorizontalSpeedDrag = 0.85f; // meh name
         public float AccelerationPower = 20;

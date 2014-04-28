@@ -52,7 +52,7 @@ namespace Assets.Scripts.AI
             if (_attackTimer.HasFinished && PhysicsHelper.Intersects(this.collider2D, _player.collider2D))
             {
                 _attackTimer.Restart();
-                _player.Get<Health>().TakeDamage(10);
+                _player.Get<Health>().TakeDamage(3);
             }
         }
     }
