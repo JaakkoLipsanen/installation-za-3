@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Character;
 using Flai;
 using Flai.Scene;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.NPC
@@ -14,9 +13,11 @@ namespace Assets.Scripts.NPC
             Idle,
             Running,
             LookingAtJack,
+            FixingTheRocket,
         }
 
         private GameObject _player;
+        private GameObject _rocket;
         private CharacterController2D _characterController;
         private EmilyState _state = EmilyState.Idle;
 
@@ -30,6 +31,11 @@ namespace Assets.Scripts.NPC
             _state = EmilyState.LookingAtJack;
         }
 
+        public void FixRocket()
+        {
+            _state = EmilyState.FixingTheRocket;
+        }
+
         public void Stop()
         {
             _state = EmilyState.Idle;
@@ -38,6 +44,7 @@ namespace Assets.Scripts.NPC
         protected override void Awake()
         {
             _player = Scene.Find("Player");
+            _rocket = Scene.Find("Rocket");
             _characterController = this.Get<CharacterController2D>();
         }
 
@@ -75,6 +82,23 @@ namespace Assets.Scripts.NPC
                     else
                     {
                         _characterController.FacingDirection = HorizontalDirection.Left;
+                    }
+                }
+            }
+            else if (_state == EmilyState.FixingTheRocket)
+            {
+                float delta = _rocket.GetPosition2D().X - this.Position2D.X;
+                if (FlaiMath.Abs(delta) > 0.2f)
+                {
+                    if (delta > 0)
+                    {
+                        _characterController.FacingDirection = HorizontalDirection.Right;
+                        _characterController.MoveRight();
+                    }
+                    else
+                    {
+                        _characterController.FacingDirection = HorizontalDirection.Left;
+                        _characterController.MoveLeft();
                     }
                 }
             }

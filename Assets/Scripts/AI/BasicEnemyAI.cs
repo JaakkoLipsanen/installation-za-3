@@ -9,7 +9,7 @@ namespace Assets.Scripts.AI
     [RequireComponent(typeof(CharacterController2D))]
     public class BasicEnemyAI : EnemyAI
     {
-        private Timer _attackTimer = new Timer(1.5f);
+        private Timer _attackTimer = new Timer(0.75f);
         private Timer _timeUntilNextJump = new Timer(0.1f);
 
         protected override void Update()
@@ -36,7 +36,7 @@ namespace Assets.Scripts.AI
             }
 
             _timeUntilNextJump.Update();
-            if (deltaPosition.Y > 1) // || Physics2D.Raycast(this.Position2D, _player.GetPosition2D(), float.MaxValue, LayerMaskF.FromNames("Bullets").Inverse))
+            if (deltaPosition.Y > 1 && Global.Random.NextFromOdds(0.1f)) // || Physics2D.Raycast(this.Position2D, _player.GetPosition2D(), float.MaxValue, LayerMaskF.FromNames("Bullets").Inverse))
             {
                 if (_timeUntilNextJump.HasFinished)
                 {

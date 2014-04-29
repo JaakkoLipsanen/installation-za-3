@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.General;
+﻿using System.ComponentModel;
+using Assets.Scripts.Enemy;
+using Assets.Scripts.General;
 using Assets.Scripts.NPC;
 using Flai;
 using Flai.Scene;
@@ -11,26 +13,63 @@ namespace Assets.Scripts.Misc
 	{
         public override void Execute()
         {
-            GenericEvent startFinalCutscene = () =>
+            var rocket = Scene.Find("Rocket");
+            var emily = Scene.Find("Emily");
+            GenericEvent startWaves = () =>
             {
-                Scene.Find("Player").renderer.enabled = false;
-                Scene.Find("Emily").renderer.enabled = false;
+                emily.Get<EmilyAI>().FixRocket();
 
-                var rocket = Scene.Find("Rocket");
-                rocket.Get<Rocket>().StartFlight();
+                var waveGO = Scene.Find("Final Wave");
+                var wave = waveGO.Get<FinalWave>();
+                wave.StartWave();
+
+                wave.Midtime += this.StartMidtimeConversation;
+
+                wave.Ended += () =>
+                {
+                    this.StartEnterRocketConversation();
+                    rocket.Get<Rocket>().SetEnterable();
+                };
             };
 
-            Scene.Find("Emily").Get<EmilyAI>().LookAtJack();
+            emily.Get<EmilyAI>().LookAtJack();
             Scene.Find("Door To Rocket Response").Get<Door>().ExecuteOff();
             var speakers = new Speaker[2] { new Speaker("Jack"), new Speaker("Emily") };
             var conversation = new ConversationPiece[]
             {
-                new ConversationPiece(1, "It's not broken!\n"), 
-                new ConversationPiece(1, "Let's board it before\n" + 
-                                         "more of those things come here!", startFinalCutscene), 
+                new ConversationPiece(1, "Damnit! It's broken\n"), 
+                new ConversationPiece(1, "It will take a while to repair it.\n" + 
+                                         "Keep me safe while I'll fix it", startWaves), 
             };
 
             Conversation.Instance.StartConversation(speakers, new ConversationLog(conversation), null);
         }
+
+	    private void StartMidtimeConversation()
+        {
+            var speakers = new Speaker[2] { new Speaker("Jack"), new Speaker("Emily") };
+            var conversation = new ConversationPiece[]
+            {
+                new ConversationPiece(1, "Just a little while longer Jack!"),
+            };
+
+            Conversation.Instance.StartConversation(speakers, new ConversationLog(conversation), null);
+	    }
+
+	    private void StartEnterRocketConversation()
+	    {
+            var rocket = Scene.Find("Rocket");
+            var speakers = new Speaker[2] { new Speaker("Jack"), new Speaker("Emily") };
+            var conversation = new ConversationPiece[]
+            {
+                new ConversationPiece(1, "Jack! Jack! I did it!\n" + 
+                                         "The rocket is working now!"), 
+
+                new ConversationPiece(1, "Come here!\n" +
+                                         "Let's leave this place!"), 
+            };
+
+            Conversation.Instance.StartConversation(speakers, new ConversationLog(conversation),  () => rocket.Get<Rocket>().SetEnterable());
+	    }
 	}
 }

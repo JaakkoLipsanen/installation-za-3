@@ -52,8 +52,10 @@ namespace Assets.Scripts.Misc
                 new ConversationPiece(0, "We need to get away from here.\n" + 
                                          "Is the landing rocket still working?"),
    
-                new ConversationPiece(1, "I don't know, but it's our hope.\n" + 
-                                         "We better hope that it's working"),
+                new ConversationPiece(1, "I'm not sure..."),
+
+                new ConversationPiece(1, "But it's our only way to get out, \n" + 
+                                         "so we better hope that it's working"),
                 
                 new ConversationPiece(1, "Let's go check it.\n" + 
                                          "Follow me", openDoorToRocketEvent),
