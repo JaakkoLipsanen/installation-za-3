@@ -1,0 +1,42 @@
+body {
+	background-color: rgb(32, 32, 32)
+}
+
+div {
+	width: 1280px;
+	margin: auto;
+}
+
+p {
+	font-family: Open Sans, sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: gray;
+}
+
+#title-text {
+	color: white;
+	margin: 0px;
+	text-align: center;
+	font-size: 20px;
+}
+
+.small-text {
+	text-align: right;
+	margin-top: -4px;
+	margin-bottom: 2px;
+	font-size: 16px;
+	color: gray;
+}
+
+.help-text {
+	text-align: center;
+	color: rgb(164, 164, 164);
+
+}
+
+#game-canvas {
+	margin: auto;
+}
